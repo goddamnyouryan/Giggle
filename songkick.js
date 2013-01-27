@@ -9,7 +9,7 @@ videos = [];
 
 function onPlayerStateChange(event) {
   if(event.data == 0) {
-    $('#skip').click()
+    $('.skip').click()
   }
 }
 
@@ -111,7 +111,7 @@ $(document).ready(function(){
               '<h2>' + hash.artist + '</h2>' +
               '<h3>' + hash.venue + '</h3>' +
               '<p>' + hash.date + ' at ' + hash.time + '</p>' +
-              '<a href="' + hash.tickets +'" target="_blank">Buy Tickets</a>' +
+              '<a class="buy" href="' + hash.tickets +'" target="_blank">Buy Tickets</a>' +
               '<a class="skip" href="#">skip!</a>'
     $('#results').append(div)
     if($('#results div').length > 0) {
@@ -121,7 +121,6 @@ $(document).ready(function(){
         $('form').hide()
         var firstId = current.data('youtube-id');
         loadVideo(firstId);
-        console.log(firstId);
       }
     }
   }
@@ -134,15 +133,20 @@ $(document).ready(function(){
 
     player = new YT.Player('youtube', {
       events: {
-        'onStateChange': onPlayerStateChange
+        'onStateChange': onPlayerStateChange,
+        'onReady': playVideo
       }
     });
+
+    function playVideo() {
+      player.playVideo()
+    }
 
     $('.skip').click(function(event) {
       event.preventDefault();
       current.hide()
       current = current.next();
-      current.show()
+      current.show();
       loadVideo(current.data('youtube-id'));
     });
   }

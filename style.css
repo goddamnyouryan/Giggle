@@ -4,13 +4,21 @@ body {
   padding: 0;
 }
 
+body {
+  background: url('bg.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 header {
-  background: black;
+  background: rgba(33, 28, 38, 0.7);
   padding: 15px 0;
 }
 
 header h1 {
-  color: white;
+  color: #F2EFDF;
   margin: 0;
   margin-left: 25px;
 }
@@ -19,9 +27,27 @@ header h1 {
   display: none;
   position: relative;
   z-index: 10;
-  background: white;
+  background: #F2EFDF;
   padding: 10px;
   width: 300px;
+}
+
+#results div .buy, #results div .skip {
+  display: block;
+  float: left;
+  padding: 10px 5px;
+  background: #656F8C;
+  text-align: center;
+  text-decoration: none;
+  color: #F2EFDF;
+  width: 100px;
+  border-radius: 5px;
+  margin-top: 35px;
+}
+
+#results div .skip {
+  float: right;
+  background: #9BBFAB;
 }
 
 iframe {
@@ -35,11 +61,16 @@ iframe {
 
 form, #results div {
   width: 400px;
-  height: 175px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  margin: 250px auto 0;
+  background: rgba(33, 28, 38, 0.7);
+  color: #F2EFDF;
+  margin: 200px auto 0;
   padding: 10px;
+  clear: both;
+  overflow: hidden;
+}
+
+#results div h2, #results div h3 {
+  margin: 0;
 }
 
 #skip {
@@ -48,4 +79,36 @@ form, #results div {
   bottom: 0;
   background: gray;
   padding: 10px;
+}
+
+#location, #genre {
+  border-radius: 4px;
+  width: 360px;;
+  padding: 10px;
+  margin: 1px 14px 25px 17px;
+  border: none;
+  font-size: 18px;
+  font-family: Helvetica, Arial, Sans-Serif;
+}
+
+label {
+  text-align: center;
+  display: block;
+  font-size: 20px;
+}
+
+input[type="submit"] {
+  background: #9BBFAB;
+  padding: 10px 15px;
+  color: #F2EFDF;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  width: 150px;
+  margin: 0 auto;
+  display: block;
+}
+
+form {
+  padding: 25px 15px;
 }
