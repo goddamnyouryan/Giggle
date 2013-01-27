@@ -6,10 +6,11 @@ var ECHONEST_API = 'YTD2TUBLESXKMGCTY'
 var ECHONEST_HOST = 'http://developer.echonest.com/api/v4/'
 
 videos = [];
-function onYouTubePlayerAPIReady() {
-}
-function onPlayerReady(event) {
-  alert('hello');
+
+function onPlayerStateChange(event) {
+  if(event.data == 0) {
+    $('#skip').click()
+  }
 }
 
 $(document).ready(function(){
@@ -110,24 +111,34 @@ $(document).ready(function(){
               '<h2>' + hash.artist + '</h2>' +
               '<h3>' + hash.venue + '</h3>' +
               '<p>' + hash.date + ' at ' + hash.time + '</p>' +
-              '<a href="' + hash.tickets +'" target="_blank">Buy Tickets</a>'
+              '<a href="' + hash.tickets +'" target="_blank">Buy Tickets</a>' +
+              '<a class="skip" href="#">skip!</a>'
     $('#results').append(div)
     if($('#results div').length > 0) {
-      if($('#results div').length < 2){
+      if($('#results div').length < 2) {
         current = $('#results div').first()
         current.show()
+        $('form').hide()
         var firstId = current.data('youtube-id');
         loadVideo(firstId);
+        console.log(firstId);
       }
     }
   }
 
 
   function loadVideo(id) {
-    var iframe = '<iframe width="560" height="315" src="http://www.youtube.com/embed/' + id + '?autoplay=1&controls=0&showinfo=0&enablejsapi=1" frameborder="0" allowfullscreen></iframe>' +
-                 '<a id="skip" href="#">skip!</a>'
+    var iframe = '<iframe width="560" id="youtube" height="315" src="http://www.youtube.com/embed/' + id +
+                 '?autoplay=1&controls=0&showinfo=0&enablejsapi=1" frameborder="0" allowfullscreen></iframe>'
     $('#video').html(iframe);
-    $('#skip').click(function(event) {
+
+    player = new YT.Player('youtube', {
+      events: {
+        'onStateChange': onPlayerStateChange
+      }
+    });
+
+    $('.skip').click(function(event) {
       event.preventDefault();
       current.hide()
       current = current.next();
@@ -139,7 +150,7 @@ $(document).ready(function(){
   sortArtistGenres = function(data) {
     var userGenre = new RegExp($('input#genre').val().toLowerCase())
     var response = data.response.artists
-    var artists =[]
+    var artists = []
     if(response.length > 0 && response[0].genres.length > 0) {
       $.each(response[0].genres, function() {
         var genre = this.name
@@ -148,6 +159,7 @@ $(document).ready(function(){
         }
       });
     }
+
     var uniqueArtists = artists.getUnique()
     $.each(uniqueArtists, function() {
       $('#results').append('<li>' + this + '</li>');
