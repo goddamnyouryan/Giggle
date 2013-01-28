@@ -134,3 +134,22 @@ form {
   font-size: 18px;
   margin-top: 25px;
 }
+
+footer {
+  background: rgba(33, 28, 38, 0.7);
+  padding: 10px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  text-align: center;
+  margin: 0;
+  font-size: 12px;
+  color: #F2EFDF;
+}
+
+footer p a {
+  color: #B2B0A4;
+}

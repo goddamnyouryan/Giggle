@@ -88,7 +88,7 @@ $(document).ready(function(){
         time: this.start.time,
         tickets: this.uri
       }
-      var url = 'https://gdata.youtube.com/feeds/api/videos?q=' + object.artist + '&start-index=1&max-results=1&v=2&alt=json-in-script&format=5';
+      var url = 'https://gdata.youtube.com/feeds/api/videos?q=' + object.artist + '&start-index=1&max-results=1&v=2&alt=json-in-script&format=5&origin=http://v1.goddamnyouryan.com';
 
       ajaxRequest(url, function(data) { getYouTubeVideos(object, data); }, 'Loading in YouTube Videos...');
       //var url = constructEchoNestUrl(this.displayName)
