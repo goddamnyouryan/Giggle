@@ -112,7 +112,7 @@ $(document).ready(function(){
               '<h2>' + hash.venue + '</h2>' +
               '<h2>' + hash.date + ' at ' + hash.time + '</h2>' +
               '<a class="buy" href="' + hash.tickets +'" target="_blank">Buy Tickets</a>' +
-              '<a class="skip" href="#">skip!</a>'
+              '<a class="skip" href="#">Skip!</a>'
     $('#results').append(div)
     if($('#results div').length > 0) {
       if($('#results div').length < 2) {
@@ -128,7 +128,7 @@ $(document).ready(function(){
 
   function loadVideo(id) {
     var iframe = '<iframe width="560" id="youtube" height="315" src="http://www.youtube.com/embed/' + id +
-                 '?autoplay=1&controls=0&showinfo=0&enablejsapi=1" frameborder="0" allowfullscreen></iframe>'
+                 '?autoplay=1&controls=0&showinfo=0&enablejsapi=1&origin=http://v1.goddamnyouryan.com" frameborder="0" allowfullscreen></iframe>'
     $('#video').html(iframe);
 
     player = new YT.Player('youtube', {
