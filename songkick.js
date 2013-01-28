@@ -109,8 +109,8 @@ $(document).ready(function(){
     var video = data.feed.entry[0].id.$t.split(':').slice(-1)[0]
     var div = '<div data-youtube-id="' + video + '">' +
               '<h2>' + hash.artist + '</h2>' +
-              '<h3>' + hash.venue + '</h3>' +
-              '<p>' + hash.date + ' at ' + hash.time + '</p>' +
+              '<h2>' + hash.venue + '</h2>' +
+              '<h2>' + hash.date + ' at ' + hash.time + '</h2>' +
               '<a class="buy" href="' + hash.tickets +'" target="_blank">Buy Tickets</a>' +
               '<a class="skip" href="#">skip!</a>'
     $('#results').append(div)
